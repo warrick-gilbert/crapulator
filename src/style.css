@@ -1,0 +1,73 @@
+body {
+  color: white;
+  background: black;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  /* font-family: -apple-system, BlinkMacSystemFont, sans-serif; */
+}
+div {
+  margin: 0px;
+  padding: 0px;
+}
+
+.crapulator {
+  /* margin-top: 300px; */
+  /* stops it scrolling */
+  /* position: fixed;  */
+  margin: auto;
+  padding-top: 10px;
+  /* could replace this padding by putting everything in another div */
+  border: 3px solid blue;
+  width: 600px;
+  height: 300px;
+}
+
+.resultWindow {
+  font-size: xx-large;
+  text-align: right;
+  font-weight: 100;
+}
+#resultWindowA {
+  /* position: relative; */
+
+  display: inline-block;
+  /* right: 200px; */
+  width: 400px;
+  border: 3px solid green;
+}
+#resultWindowB {
+  /* position: relative; */
+  font-size: small;
+  text-align: left;
+  display: inline-block;
+  width: 100px;
+  border: 3px solid brown;
+}
+
+.button {
+  user-select: none;
+  font-size: small;
+  border-radius: 21px;
+  height: 40px;
+  width: 50px; /* can also be stuff like vh vmax vmin */
+  margin: 2px;
+  text-align: center;
+  line-height: 39px; /* aligns text vertically */
+  display: inline-block;
+}
+
+.darkGrey {
+  background: #212121;
+}
+.grey {
+  background: #333333;
+}
+.lightGrey {
+  color: black;
+  background: #a6a6a6;
+}
+
+.orange {
+  font-size: medium;
+  background: #f09537;
+}
