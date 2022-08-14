@@ -1,273 +1,27 @@
+// improvements: move button data into another js file, import as module
+
+import {
+  buttonRow1,
+  buttonRow2,
+  buttonRow3,
+  buttonRow4,
+  buttonRow5,
+} from "./module-data";
+
+import fetchData from "./module-randomAPI";
+
 let windowWidth;
+// if the user is entering a multi-digit number into the result window
+let buildingInput = true;
+let userNumber = 0;
+const upperLimitNumber = 10000000;
 
 window.addEventListener("load", getDimensions);
 function getDimensions() {
   windowWidth = window.innerWidth; // we want window width, not screen width
   //   console.log(`windowWidth is ${windowWidth}`);
 }
-
 // (() => console.log("immediately invoked arrow function"))();  //works
-
-const buttonRow1 = [
-  {
-    symbol: "(",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: ")",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "ennui",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "m+",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "m-",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "mr",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "AC",
-    buttonColour: "lightGrey",
-    particularFunction: "clearFunction",
-  },
-  {
-    symbol: "±",
-    buttonColour: "lightGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "%",
-    buttonColour: "lightGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "÷",
-    buttonColour: "orange",
-    particularFunction: "dividingFunction",
-  },
-];
-const buttonRow2 = [
-  {
-    symbol: "2nd",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "x2",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "x3",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "xy",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "ex",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "10x",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "7",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "8",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "9",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "✕",
-    buttonColour: "orange",
-    particularFunction: "multiplyingFunction",
-  },
-];
-const buttonRow3 = [
-  {
-    symbol: "2nd",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "x2",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "x3",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "xy",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "ex",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "10x",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "4",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "5",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "6",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "–",
-    buttonColour: "orange",
-    particularFunction: "multiplyingFunction",
-  },
-];
-const buttonRow4 = [
-  {
-    symbol: "2nd",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "x2",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "x3",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "xy",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "ex",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "10x",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "1",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "2",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "3",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "+",
-    buttonColour: "orange",
-    particularFunction: "multiplyingFunction",
-  },
-];
-const buttonRow5 = [
-  {
-    symbol: "2nd",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "x2",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "x3",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "xy",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "ex",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "10x",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
-  },
-  {
-    symbol: "0",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "0",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: ".",
-    buttonColour: "grey",
-    particularFunction: "numberFunction",
-  },
-  {
-    symbol: "=",
-    buttonColour: "orange",
-    particularFunction: "multiplyingFunction",
-  },
-];
 
 const buildRow = (arrayOfButtons, rowToMake) => {
   // builds a row of buttons
@@ -292,19 +46,25 @@ const buildRow = (arrayOfButtons, rowToMake) => {
     let buttonFunction = `${arrayOfButtons[i].particularFunction}`;
     // console.log(`buttonFunction is of type ${typeof buttonFunction}`);
     // console.log(typeof numberFunction);
+    // console.log(`buttonFunction is: ${buttonFunction}`);
+
+    // eval(buttonFunction);
+
+    newButton.addEventListener("click", eval(buttonFunction)); // works but poor practise?
 
     if (buttonFunction === "numberFunction") {
-      //   console.log(`Number function chosen ${arrayOfButtons[i].symbol}`);
-      newButton.addEventListener("click", window[buttonFunction]);
+      newButton.addEventListener("click", eval(buttonFunction)); // works but poor practise?
       // add the number as a property (?) of the newButton object
       //   console.log(`newButton is of type ${typeof newButton}`);
       newButton.myParam = arrayOfButtons[i].symbol;
     } else {
-      newButton.addEventListener("click", window[buttonFunction]);
-    }
-    // console.log(buttonFunction);
+      //   console.log(`buttonFunction is: ${buttonFunction}`);
+      //   console.log(`window[buttonFunction] is: ${window[buttonFunction]}`);
 
-    document.querySelector("#" + rowToMake).appendChild(newButton); // Append the node
+      newButton.addEventListener("click", eval(buttonFunction)); // works but poor practise?
+    }
+    // Append the node to the newRow
+    document.querySelector("#" + rowToMake).appendChild(newButton);
   }
 };
 
@@ -313,11 +73,6 @@ buildRow(buttonRow2, "secondRow");
 buildRow(buttonRow3, "thirdRow");
 buildRow(buttonRow4, "fourthRow");
 buildRow(buttonRow5, "fifthRow");
-
-// if the user is entering a multi-digit number into the result window
-let buildingInput = true;
-let userNumber = 0;
-const upperLimitNumber = 10000000;
 
 function updateResultWindow() {
   // target the node
@@ -330,20 +85,26 @@ updateResultWindow(); // run once to put starting value in
 function buildUserNumber(number) {
   // only work if user has started building up a number.
   // Shouldn't build a number if they've just pressed "+"
-  if (buildingInput && userNumber < upperLimitNumber) {
+  console.log(number.toString());
+  if (buildingInput && Math.abs(userNumber) < upperLimitNumber) {
     userNumber = userNumber.toString() + number.toString();
-    userNumber = parseFloat(userNumber);
-    // console.log(4 / 7);
+    number !== "." ? (userNumber = parseFloat(userNumber)) : "";
+    // BUG: user can press "." twice
     updateResultWindow();
   }
 }
 function clearFunction() {
+  // reset all
+  console.log("clearFunction called");
   userNumber = 0;
-  buildingInput = true; // reset all
+  buildingInput = true;
   updateResultWindow();
 }
 
 function addingFunction() {
+  console.log("I am the addingFunction");
+}
+function dividingFunction() {
   console.log("I am the addingFunction");
 }
 
@@ -352,14 +113,21 @@ function multiplyingFunction() {
 }
 
 function numberFunction(e) {
-  //   console.log(`The ${e.currentTarget.myParam} was clicked`);
+  console.log(`The ${e.currentTarget.myParam} was clicked`);
   // tell a function to build up the userNumber with this click
   buildUserNumber(e.currentTarget.myParam);
 }
 
-// function testTextReplace() {
-//     const replaceThis = document.querySelector("#resultWindowA");
-//     replaceThis.innerText = "2345.179";
-//     //   console.log("testTextReplace() function attempt");
-//   }
-//   setTimeout(testTextReplace, 500);
+function randomFunction() {
+  console.log(userNumber);
+  //   console.log(`randomWord is: ${fetchData()}`);
+  //   console.log(typeof fetchData);
+  userNumber = fetchData();
+  console.log(userNumber);
+
+  updateResultWindow();
+
+  // let userNumber become a random number or some other random thing
+}
+
+console.log(`randomWord is: ${fetchData()}`);
