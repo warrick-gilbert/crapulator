@@ -106,9 +106,32 @@ export function handleMemoryUpdateClick(newMemoryValue) {
     );
     updateUserNumber(res.record.crapulatorMemory);
   }
+  fetch(endPointBin, fetchData).then(convertToJSObject).then(handleData);
+}
+
+export function handleMemoryDeleteClick() {
+  // console.log(`binID is: ${binID} and handleMemoryDeleteClick was acalled`);
+  // let objectToPass = { crapulatorMemory: newMemoryValue };
+  let endPointBin = endPoint + "/" + binID;
+
+  let fetchData = {
+    method: "DELETE",
+    // body: JSON.stringify(objectToPass),
+
+    headers: new Headers({
+      "X-Master-Key": API_Key,
+    }),
+  };
+
+  function convertToJSObject(res) {
+    return res.json();
+  }
+
+  function handleData(res) {
+    console.log(`Message from API is: ${res.message}`);
+    updateUserNumber("Memory is gone for good...");
+    updateResultWindow();
+  }
 
   fetch(endPointBin, fetchData).then(convertToJSObject).then(handleData);
-  // .then(updateResultWindow);
-
-  // updateResultWindow(); // deosn't work
 }

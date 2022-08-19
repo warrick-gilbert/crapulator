@@ -17,7 +17,7 @@ export const buttonRow1 = [
   {
     symbol: "mc",
     buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
+    particularFunction: "handleMemoryDeleteClick2",
   },
   {
     symbol: "m+",

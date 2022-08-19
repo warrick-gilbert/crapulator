@@ -15,6 +15,7 @@ import {
   handleMemoryPlusClick,
   handleMemoryRecallClick,
   handleMemoryUpdateClick,
+  handleMemoryDeleteClick,
 } from "./module-memoryAPI";
 
 let windowWidth;
@@ -153,7 +154,6 @@ function multiplyingFunction() {
   savePrevNumber();
   buildingInput = false; // stops the usernumber from growing
   storedOperator = "multiply";
-  // console.log(`multiplyingFunction called, storedOperator: ${storedOperator}`);
 }
 
 function numberFunction(e) {
@@ -162,12 +162,10 @@ function numberFunction(e) {
 }
 
 function equalFunction() {
-  console.log(`equal called, storedOperator: ${storedOperator}`);
+  // console.log(`equal called, storedOperator: ${storedOperator}`);
   buildingInput = false; // stops the usernumber from growing
-  // userNumber = prevNumber + userNumber; // works
   userNumber = mergeThese(prevNumber, userNumber, storedOperator);
-  console.log(`equal says usernumber: ${userNumber}`);
-
+  // console.log(`equal says usernumber: ${userNumber}`);
   updateResultWindow();
 }
 
@@ -180,6 +178,7 @@ async function randomFunction() {
 }
 
 let memoryBinCreated = false; // changed once the user creates their first memory
+
 function handleMemoryPlusClick2() {
   if (memoryBinCreated == false) {
     // only make a new memory bin if one doesn't exists
@@ -188,7 +187,9 @@ function handleMemoryPlusClick2() {
     memoryBinCreated = true;
     prevNumber = userNumber;
   } else {
+    // if something is already in memory, merge the two things and update memory
     buildingInput = false;
+    // BUG: Shouldn't be prevNumber, but what is stored in memory
     let passThis = mergeThese(prevNumber, userNumber, "add");
     // mergeThese(prevNumber + userNumber);
     handleMemoryUpdateClick(passThis);
@@ -204,6 +205,17 @@ function handleMemoryRecallClick2() {
     buildingInput = false;
   } else {
     userNumber = "no memory saved";
+    updateResultWindow();
+  }
+}
+function handleMemoryDeleteClick2() {
+  if (memoryBinCreated) {
+    userNumber = "Clearing memory";
+    updateResultWindow();
+    handleMemoryDeleteClick();
+    // buildingInput = false;
+  } else {
+    userNumber = "no memory to clear";
     updateResultWindow();
   }
 }
@@ -232,8 +244,20 @@ function mergeThese(arg1, arg2, operator) {
     } else if (operator === "subtract") {
       return arg1 - arg2;
     }
+  } else if (Number.isInteger(+arg1) || Number.isInteger(+arg2)) {
+    // if only one arg is a number, put the number first
+    if (Number.isInteger(+arg1)) {
+    } else {
+      // swaps the args so that the number comes first
+      let intermArg = arg1;
+      arg1 = arg2;
+      arg2 = intermArg;
+      // the other is the number
+    }
+    return arg1 + " " + arg2;
   } else {
-    return "not numbers, need weirder steps";
+    // if neither arg are numbers
+    return arg1 + " " + arg2;
   }
 }
 // console.log(userNumber);
