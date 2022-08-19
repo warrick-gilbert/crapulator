@@ -1,8 +1,8 @@
 export const buttonRow1 = [
   {
-    symbol: "(",
+    symbol: "clem",
     buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
+    particularFunction: "clemFunction",
   },
   {
     symbol: ")",
@@ -12,12 +12,12 @@ export const buttonRow1 = [
   {
     symbol: "ennui",
     buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
+    particularFunction: "ennuiFunction",
   },
   {
     symbol: "m+",
     buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
+    particularFunction: "handleMemoryPlusClick2",
   },
   {
     symbol: "m-",
@@ -203,7 +203,7 @@ export const buttonRow4 = [
   {
     symbol: "+",
     buttonColour: "orange",
-    particularFunction: "multiplyingFunction",
+    particularFunction: "addingFunction",
   },
 ];
 export const buttonRow5 = [
@@ -255,6 +255,6 @@ export const buttonRow5 = [
   {
     symbol: "=",
     buttonColour: "orange",
-    particularFunction: "multiplyingFunction",
+    particularFunction: "equalFunction",
   },
 ];

@@ -20,15 +20,16 @@ function handleData(data) {
 //   .then(handleData);
 
 function fetchData() {
-  fetch(baseURL + parameters)
+  const res = fetch(baseURL + parameters)
     .then(convertToJSObject)
     .then(handleData)
     .catch((e) => {
       console.log(e);
     });
+  return res;
 }
 
-let bob = fetchData();
-console.log(`bob: ${bob}`);
+// let bob = fetchData();
+// console.log(`bob: ${bob}`);
 
 export default fetchData;

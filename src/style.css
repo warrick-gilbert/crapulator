@@ -3,6 +3,9 @@ body {
   background: black;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
+  /* stop scrollbars from being visible at all */
+  overflow: hidden;
+
   /* font-family: -apple-system, BlinkMacSystemFont, sans-serif; */
 }
 div {
