@@ -9,12 +9,17 @@ import {
 } from "./module-buttons";
 
 import fetchData from "./module-randomAPI";
-import { handleMemoryPlusClick } from "./module-memoryAPI"; // CRUD module
+
+import {
+  // functions and variables from the memory module (CRUD)
+  handleMemoryPlusClick,
+  handleMemoryRecallClick,
+} from "./module-memoryAPI";
 
 let windowWidth;
 // if the user is entering a multi-digit number into the result window
 let buildingInput = true;
-let userNumber = 0;
+export let userNumber = 0;
 let prevNumber = 0; // this is the number previously built.
 // Need to remember it when you hit +
 const upperLimitNumber = 10000000;
@@ -39,7 +44,7 @@ const buildRow = (arrayOfButtons, rowToMake) => {
     newButton.classList.add("button"); // give it the class "button"
 
     let buttonText = arrayOfButtons[i].symbol; // pull the symbol out of the array
-    const textnode = document.createTextNode(buttonText); // Create a text node:
+    const textnode = document.createTextNode(buttonText); // Create a text node with the buttonText
     newButton.appendChild(textnode); // Append the text node to the "div" node:
 
     let buttonColour = arrayOfButtons[i].buttonColour; // pull the colour out of the array
@@ -75,20 +80,23 @@ buildRow(buttonRow3, "thirdRow");
 buildRow(buttonRow4, "fourthRow");
 buildRow(buttonRow5, "fifthRow");
 
-function updateResultWindow() {
+export function updateResultWindow() {
   // target the node
   const replaceThis = document.querySelector("#resultWindowA");
   replaceThis.innerText = userNumber;
+  console.log(`updateResultWindow called with userNumber: ${userNumber}`);
 }
+
 updateResultWindow(); // run once to put starting value in
 
 // takes a number and builds up a multi-digit number
 function buildUserNumber(number) {
   // only work if user has started building up a number.
   // Shouldn't keep building a number if they've just pressed "+"
-  console.log(number.toString());
+  // console.log(number.toString());
   if (buildingInput && Math.abs(userNumber) < upperLimitNumber) {
     userNumber = userNumber.toString() + number.toString();
+    // get rid of the initial zero, unless the user presses "."
     number !== "." ? (userNumber = parseFloat(userNumber)) : "";
     // BUG: user can press "." twice
   } else {
@@ -137,7 +145,7 @@ function multiplyingFunction() {
 }
 
 function numberFunction(e) {
-  console.log(`The ${e.currentTarget.myParam} was clicked`);
+  // console.log(`The ${e.currentTarget.myParam} was clicked`);
   // tell a function to build up the userNumber with this click
   buildUserNumber(e.currentTarget.myParam);
 }
@@ -151,14 +159,26 @@ async function randomFunction() {
 }
 
 function equalFunction() {
-  userNumber = prevNumber + userNumber;
   buildingInput = false; // stops the usernumber from growing
+  userNumber = prevNumber + userNumber;
   updateResultWindow();
-  // BUG: Adding singe numbers concatenates them, they're being remembered as strings
+  // BUG: Adding single numbers concatenates them, they're being remembered as strings
 }
 
-function handleMemoryPlusClick2(userNumber) {
+function handleMemoryPlusClick2() {
+  buildingInput = false;
   handleMemoryPlusClick(userNumber);
+}
+
+function handleMemoryRecallClick2() {
+  userNumber = "...";
+  updateResultWindow();
+  handleMemoryRecallClick();
+  buildingInput = false;
+}
+
+export function updateUserNumber(arg) {
+  userNumber = arg;
 }
 
 // console.log(userNumber);

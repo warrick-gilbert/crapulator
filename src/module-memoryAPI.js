@@ -1,3 +1,7 @@
+import { updateResultWindow, updateUserNumber } from "./main";
+
+let binID = "no memory yet"; // holds the bin ID
+
 // 1. work out the URL and prototcol
 // 2. work out the parameters
 // 3. work out the method
@@ -19,14 +23,14 @@ const endPoint = URL + parameters;
 let memoryCreated = false; // changed once the user creates their first memory
 
 export function handleMemoryPlusClick(valueToPass) {
-  let data = { crapulatorRemembers: valueToPass };
+  let data = { crapulatorMemory: valueToPass };
   let fetchData = {
     method: "POST",
     body: JSON.stringify(data),
     headers: new Headers({
       "Content-Type": "application/json",
       "X-Master-Key": API_Key,
-      "X-Bin-Name": "test",
+      "X-Bin-Name": "Bin_name_goes_here",
     }),
   };
 
@@ -34,13 +38,44 @@ export function handleMemoryPlusClick(valueToPass) {
     return res.json();
   }
 
-  function handleData(data) {
-    memoryCreated = false;
-    console.log(`a new bin was created at jsonbin.io at ${data.metadata.id}`);
-    console.log(data);
+  function handleData(res) {
+    memoryCreated = false; // used?
+    // need to pull out bin id from request response
+    binID = res.metadata.id;
+    let storedValue = res.record.crapulatorMemory;
+    console.log(
+      `Request response says binID is: ${binID} and storedValue is: ${storedValue}`
+    );
   }
 
   fetch(endPoint, fetchData).then(convertToJSObject).then(handleData);
 }
 
-// handleMemoryPlusClick(); // call the memory API
+export function handleMemoryRecallClick() {
+  console.log(`binID is: ${binID} and handleMemoryRecallClick was acalled`);
+  let endPointBin = endPoint + "/" + binID;
+  // console.log(endPointBin);
+
+  let fetchData = {
+    method: "GET",
+    headers: new Headers({
+      "X-Master-Key": API_Key,
+    }),
+  };
+
+  function convertToJSObject(res) {
+    return res.json();
+  }
+
+  function handleData(res) {
+    console.log(
+      `handleData says recalled value is: ${res.record.crapulatorMemory}`
+    );
+    updateUserNumber(res.record.crapulatorMemory);
+  }
+
+  fetch(endPointBin, fetchData)
+    .then(convertToJSObject)
+    .then(handleData)
+    .then(updateResultWindow);
+}
