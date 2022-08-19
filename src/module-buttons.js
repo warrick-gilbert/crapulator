@@ -15,14 +15,14 @@ export const buttonRow1 = [
     particularFunction: "ennuiFunction",
   },
   {
+    symbol: "mc",
+    buttonColour: "darkGrey",
+    particularFunction: "addingFunction",
+  },
+  {
     symbol: "m+",
     buttonColour: "darkGrey",
     particularFunction: "handleMemoryPlusClick2",
-  },
-  {
-    symbol: "m-",
-    buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
   },
   {
     symbol: "mr",
@@ -151,7 +151,7 @@ export const buttonRow3 = [
   {
     symbol: "–",
     buttonColour: "orange",
-    particularFunction: "multiplyingFunction",
+    particularFunction: "subtractingFunction",
   },
 ];
 export const buttonRow4 = [

@@ -14,15 +14,16 @@ import {
   // functions and variables from the memory module (CRUD)
   handleMemoryPlusClick,
   handleMemoryRecallClick,
+  handleMemoryUpdateClick,
 } from "./module-memoryAPI";
 
 let windowWidth;
 // if the user is entering a multi-digit number into the result window
 let buildingInput = true;
 export let userNumber = 0;
-let prevNumber = 0; // this is the number previously built.
-// Need to remember it when you hit +
+let prevNumber = 0; // this is the number previously built. Need to remember it when you hit +
 const upperLimitNumber = 10000000;
+let storedOperator = "add"; // remember what operator (+-*/) the user pressed for when = is hit
 
 window.addEventListener("load", getDimensions);
 function getDimensions() {
@@ -133,21 +134,41 @@ function ennuiFunction() {
 }
 
 function addingFunction() {
-  console.log("I am the addingFunction");
   savePrevNumber();
+  buildingInput = false; // stops the usernumber from growing
+  storedOperator = "add";
+}
+function subtractingFunction() {
+  savePrevNumber();
+  buildingInput = false; // stops the usernumber from growing
+  storedOperator = "subtract";
 }
 function dividingFunction() {
-  console.log("I am the addingFunction");
+  savePrevNumber();
+  buildingInput = false; // stops the usernumber from growing
+  storedOperator = "divide";
 }
 
 function multiplyingFunction() {
+  savePrevNumber();
   buildingInput = false; // stops the usernumber from growing
+  storedOperator = "multiply";
+  // console.log(`multiplyingFunction called, storedOperator: ${storedOperator}`);
 }
 
 function numberFunction(e) {
-  // console.log(`The ${e.currentTarget.myParam} was clicked`);
-  // tell a function to build up the userNumber with this click
+  // used when the user hits a number button
   buildUserNumber(e.currentTarget.myParam);
+}
+
+function equalFunction() {
+  console.log(`equal called, storedOperator: ${storedOperator}`);
+  buildingInput = false; // stops the usernumber from growing
+  // userNumber = prevNumber + userNumber; // works
+  userNumber = mergeThese(prevNumber, userNumber, storedOperator);
+  console.log(`equal says usernumber: ${userNumber}`);
+
+  updateResultWindow();
 }
 
 // this is an async function because it uses a fetch statement from the randomAPI module
@@ -158,29 +179,63 @@ async function randomFunction() {
   updateResultWindow();
 }
 
-function equalFunction() {
-  buildingInput = false; // stops the usernumber from growing
-  userNumber = prevNumber + userNumber;
-  updateResultWindow();
-  // BUG: Adding single numbers concatenates them, they're being remembered as strings
-}
-
+let memoryBinCreated = false; // changed once the user creates their first memory
 function handleMemoryPlusClick2() {
-  buildingInput = false;
-  handleMemoryPlusClick(userNumber);
+  if (memoryBinCreated == false) {
+    // only make a new memory bin if one doesn't exists
+    buildingInput = false;
+    handleMemoryPlusClick(userNumber);
+    memoryBinCreated = true;
+    prevNumber = userNumber;
+  } else {
+    buildingInput = false;
+    let passThis = mergeThese(prevNumber, userNumber, "add");
+    // mergeThese(prevNumber + userNumber);
+    handleMemoryUpdateClick(passThis);
+    // handleMemoryUpdateClick(prevNumber + userNumber);
+  }
 }
 
 function handleMemoryRecallClick2() {
-  userNumber = "...";
-  updateResultWindow();
-  handleMemoryRecallClick();
-  buildingInput = false;
+  if (memoryBinCreated) {
+    userNumber = "...";
+    updateResultWindow();
+    handleMemoryRecallClick();
+    buildingInput = false;
+  } else {
+    userNumber = "no memory saved";
+    updateResultWindow();
+  }
 }
 
 export function updateUserNumber(arg) {
   userNumber = arg;
 }
 
+// how to add banana + 7 or whatever the user is trying to do
+function mergeThese(arg1, arg2, operator) {
+  // if they're both numbers
+  if (Number.isInteger(+arg1 + +arg2)) {
+    arg1 = Number(arg1);
+    arg2 = Number(arg2);
+    console.log(
+      `merge called, they're both numbers, storedOperator: ${storedOperator}`
+    );
+    if (operator === "multiply") {
+      console.log("trying to return multiply stuff");
+      console.log(`arg1 typeof: ${typeof arg1}`);
+      return arg1 * arg2;
+    } else if (operator === "divide") {
+      return arg1 / arg2;
+    } else if (operator === "add") {
+      return arg1 + arg2;
+    } else if (operator === "subtract") {
+      return arg1 - arg2;
+    }
+  } else {
+    return "not numbers, need weirder steps";
+  }
+}
 // console.log(userNumber);
 // console.log(userNumber);
 //   console.log(`randomWord is: ${fetchData()}`);

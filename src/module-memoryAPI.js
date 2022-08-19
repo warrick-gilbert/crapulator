@@ -20,8 +20,6 @@ const endPoint = URL + parameters;
 
 // 5. turn it into JS object
 
-let memoryCreated = false; // changed once the user creates their first memory
-
 export function handleMemoryPlusClick(valueToPass) {
   let data = { crapulatorMemory: valueToPass };
   let fetchData = {
@@ -78,4 +76,39 @@ export function handleMemoryRecallClick() {
     .then(convertToJSObject)
     .then(handleData)
     .then(updateResultWindow);
+
+  // updateResultWindow(); // deosn't work
+}
+
+export function handleMemoryUpdateClick(newMemoryValue) {
+  console.log(`binID is: ${binID} and handleMemoryUpdateClick was acalled`);
+  let objectToPass = { crapulatorMemory: newMemoryValue };
+
+  let endPointBin = endPoint + "/" + binID;
+
+  let fetchData = {
+    method: "PUT",
+    body: JSON.stringify(objectToPass),
+
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "X-Master-Key": API_Key,
+    }),
+  };
+
+  function convertToJSObject(res) {
+    return res.json();
+  }
+
+  function handleData(res) {
+    console.log(
+      `handleData says recalled value is: ${res.record.crapulatorMemory}`
+    );
+    updateUserNumber(res.record.crapulatorMemory);
+  }
+
+  fetch(endPointBin, fetchData).then(convertToJSObject).then(handleData);
+  // .then(updateResultWindow);
+
+  // updateResultWindow(); // deosn't work
 }
