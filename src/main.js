@@ -52,6 +52,9 @@ const buildRow = (arrayOfButtons, rowToMake) => {
     let buttonColour = arrayOfButtons[i].buttonColour; // pull the colour out of the array
     newButton.classList.add(buttonColour); // add it to the button,
 
+    let buttonID = arrayOfButtons[i].ID; // pull the button id out of the array
+    newButton.setAttribute("id", buttonID);
+
     // adds the particular function to the button
     let buttonFunction = `${arrayOfButtons[i].particularFunction}`;
     // console.log(`buttonFunction is of type ${typeof buttonFunction}`);
@@ -86,7 +89,7 @@ export function updateResultWindow() {
   // target the node
   const replaceThis = document.querySelector("#resultWindowA");
   replaceThis.innerText = userNumber;
-  console.log(`updateResultWindow called with userNumber: ${userNumber}`);
+  // console.log(`updateResultWindow called with userNumber: ${userNumber}`);
 }
 
 updateResultWindow(); // run once to put starting value in
@@ -123,16 +126,6 @@ function clearFunction() {
   buildingInput = true;
   updateResultWindow();
 }
-function clemFunction() {
-  userNumber = "Do not clemerforate";
-  buildingInput = false;
-  updateResultWindow();
-}
-function ennuiFunction() {
-  userNumber = "ennui";
-  buildingInput = false;
-  updateResultWindow();
-}
 
 function addingFunction() {
   savePrevNumber();
@@ -162,10 +155,8 @@ function numberFunction(e) {
 }
 
 function equalFunction() {
-  // console.log(`equal called, storedOperator: ${storedOperator}`);
   buildingInput = false; // stops the usernumber from growing
   userNumber = mergeThese(prevNumber, userNumber, storedOperator);
-  // console.log(`equal says usernumber: ${userNumber}`);
   updateResultWindow();
 }
 
@@ -174,6 +165,50 @@ function equalFunction() {
 async function randomFunction() {
   buildingInput = true;
   userNumber = await fetchData();
+  updateResultWindow();
+}
+
+// toggle the style of the button
+function toggleButton(IDToToggle) {
+  // console.log(`Toggle function was called by ${toggleButton.caller}`);
+  let button = document.querySelector("#" + IDToToggle);
+  button.classList.toggle("orange");
+  // button.classList.add("orange");
+  // console.log(button.getAttribute("class"));
+  //
+  //
+  //
+  //
+  //
+  // BUG: Rand is broken, toggle is partly done,
+  // BUG: every save makes button grid respawn.
+  //
+  //
+  //
+  //
+}
+
+function clemFunction() {
+  toggleButton("clem");
+  userNumber = "Do not clemerforate";
+  buildingInput = false;
+  updateResultWindow();
+}
+
+function ennuiFunction() {
+  userNumber = "ennui";
+  buildingInput = false;
+  updateResultWindow();
+}
+
+function sighFunction() {
+  buildingInput = true;
+  userNumber = "sigh";
+  updateResultWindow();
+}
+function flanFunction() {
+  buildingInput = true;
+  userNumber = "flan";
   updateResultWindow();
 }
 

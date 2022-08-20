@@ -1,50 +1,60 @@
 export const buttonRow1 = [
   {
+    ID: "clem",
     symbol: "clem",
     buttonColour: "darkGrey",
     particularFunction: "clemFunction",
   },
   {
-    symbol: ")",
+    ID: "sigh",
+    symbol: "sigh",
     buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
+    particularFunction: "sighFunction",
   },
   {
+    ID: "ennui",
     symbol: "ennui",
     buttonColour: "darkGrey",
     particularFunction: "ennuiFunction",
   },
   {
+    ID: "mc",
     symbol: "mc",
     buttonColour: "darkGrey",
     particularFunction: "handleMemoryDeleteClick2",
   },
   {
+    ID: "m+",
     symbol: "m+",
     buttonColour: "darkGrey",
     particularFunction: "handleMemoryPlusClick2",
   },
   {
+    ID: "mr",
     symbol: "mr",
     buttonColour: "darkGrey",
     particularFunction: "handleMemoryRecallClick2",
   },
   {
+    ID: "AC",
     symbol: "AC",
     buttonColour: "lightGrey",
     particularFunction: "clearFunction",
   },
   {
+    ID: "plusMinus",
     symbol: "±",
     buttonColour: "lightGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "percentage",
     symbol: "%",
     buttonColour: "lightGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "plus",
     symbol: "÷",
     buttonColour: "orange",
     particularFunction: "dividingFunction",
@@ -52,51 +62,61 @@ export const buttonRow1 = [
 ];
 export const buttonRow2 = [
   {
+    ID: "2nd",
     symbol: "2nd",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "x2",
     symbol: "x2",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "x3",
     symbol: "x3",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "xy",
     symbol: "xy",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "ex",
     symbol: "ex",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
-    symbol: "10x",
+    ID: "flan",
+    symbol: "flan",
     buttonColour: "darkGrey",
-    particularFunction: "addingFunction",
+    particularFunction: "flanFunction",
   },
   {
+    ID: "7",
     symbol: "7",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "8",
     symbol: "8",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "9",
     symbol: "9",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "multiply",
     symbol: "✕",
     buttonColour: "orange",
     particularFunction: "multiplyingFunction",
@@ -104,51 +124,61 @@ export const buttonRow2 = [
 ];
 export const buttonRow3 = [
   {
+    ID: "21",
     symbol: "2nd",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "22",
     symbol: "x2",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "23",
     symbol: "x3",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "24",
     symbol: "xy",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "25",
     symbol: "ex",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "26",
     symbol: "10x",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "4",
     symbol: "4",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "5",
     symbol: "5",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "6",
     symbol: "6",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "minus",
     symbol: "–",
     buttonColour: "orange",
     particularFunction: "subtractingFunction",
@@ -156,51 +186,61 @@ export const buttonRow3 = [
 ];
 export const buttonRow4 = [
   {
+    ID: "31",
     symbol: "2nd",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "32",
     symbol: "x2",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "33",
     symbol: "x3",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "34",
     symbol: "xy",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "35",
     symbol: "ex",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "36",
     symbol: "10x",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "1",
     symbol: "1",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "2",
     symbol: "2",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "3",
     symbol: "3",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "plus",
     symbol: "+",
     buttonColour: "orange",
     particularFunction: "addingFunction",
@@ -208,51 +248,61 @@ export const buttonRow4 = [
 ];
 export const buttonRow5 = [
   {
+    ID: "41",
     symbol: "2nd",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "42",
     symbol: "x2",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "43",
     symbol: "x3",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "44",
     symbol: "xy",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "45",
     symbol: "ex",
     buttonColour: "darkGrey",
     particularFunction: "addingFunction",
   },
   {
+    ID: "Rand",
     symbol: "Rand",
     buttonColour: "darkGrey",
     particularFunction: "randomFunction",
   },
   {
+    ID: "0",
     symbol: "0",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "00",
     symbol: "0",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "decimalPoint",
     symbol: ".",
     buttonColour: "grey",
     particularFunction: "numberFunction",
   },
   {
+    ID: "equals",
     symbol: "=",
     buttonColour: "orange",
     particularFunction: "equalFunction",

@@ -9,15 +9,10 @@ function convertToJSObject(res) {
 }
 
 function handleData(data) {
-  // console.log(data);
   randomWord = data[0].word;
   // console.log(`randomWord is: ${randomWord}`);
   return randomWord;
 }
-
-// fetch(baseURL + parameters)
-//   .then(convertToJSObject)
-//   .then(handleData);
 
 function fetchData() {
   const res = fetch(baseURL + parameters)
@@ -29,7 +24,4 @@ function fetchData() {
   return res;
 }
 
-// let bob = fetchData();
-// console.log(`bob: ${bob}`);
-
-export default fetchData;
+export default fetchData; // another way of specifying which parts are to be executed
