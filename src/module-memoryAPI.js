@@ -37,7 +37,7 @@ export function handleMemoryPlusClick(valueToPass) {
   }
 
   function handleData(res) {
-    memoryCreated = false; // used?
+    // memoryCreated = false; // used?
     // need to pull out bin id from request response
     binID = res.metadata.id;
     let storedValue = res.record.crapulatorMemory;
