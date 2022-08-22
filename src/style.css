@@ -20,7 +20,7 @@ div {
   margin: auto;
   padding-top: 10px;
   /* could replace this padding by putting everything in another div */
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   width: 600px;
   height: 300px;
 }
@@ -36,7 +36,7 @@ div {
   display: inline-block;
   /* right: 200px; */
   width: 400px;
-  border: 3px solid green;
+  /* border: 3px solid green; */
 }
 #resultWindowB {
   /* position: relative; */
@@ -44,7 +44,7 @@ div {
   text-align: left;
   display: inline-block;
   width: 100px;
-  border: 3px solid brown;
+  /* border: 3px solid brown; */
 }
 
 .button {

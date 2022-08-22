@@ -47,6 +47,7 @@ export function handleMemoryPlusClick(valueToPass) {
   }
 
   fetch(endPoint, fetchData).then(convertToJSObject).then(handleData);
+  // BUG: need to add error catching
 }
 
 export function handleMemoryRecallClick() {
