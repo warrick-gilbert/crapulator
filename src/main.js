@@ -300,3 +300,4 @@ function mergeThese(arg1, arg2, operator) {
 //   console.log(`randomWord is: ${fetchData()}`);
 //   console.log(typeof fetchData);
 // console.log(`randomWord is: ${fetchData()}`);
+//

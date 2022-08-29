@@ -46,8 +46,14 @@ export function handleMemoryPlusClick(valueToPass) {
     );
   }
 
-  fetch(endPoint, fetchData).then(convertToJSObject).then(handleData);
-  // BUG: need to add error catching
+  function handleError(e) {
+    console.error(`Error: `, e);
+  }
+
+  fetch(endPoint, fetchData)
+    .then(convertToJSObject)
+    .then(handleData)
+    .catch(handleError);
 }
 
 export function handleMemoryRecallClick() {
