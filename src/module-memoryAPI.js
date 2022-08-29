@@ -13,10 +13,13 @@ const URL = "https://api.jsonbin.io/v3";
 // 2. work out the parameters
 const parameters = "/b";
 const API_Key = process.env.JSONBIN_ESCAPED_X_MASTER_API_KEY; // gets API key from .env
+const Test_Key = process.env.TEST_KEY; // just for testing
 // 3. work out the method
 const method = "POST";
 // 4. fetch the JSON
 const endPoint = URL + parameters;
+
+console.log(Test_Key); // just to test Vercel's env variables
 
 // 5. turn it into JS object
 
@@ -47,7 +50,7 @@ export function handleMemoryPlusClick(valueToPass) {
   }
 
   function handleError(e) {
-    console.error(`Error: `, e);
+    console.error(`Ehmergerd, Error: `, e);
   }
 
   fetch(endPoint, fetchData)
