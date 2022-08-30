@@ -1,5 +1,3 @@
-// improvements: move button data into another js file, import as module
-
 import {
   buttonRow1,
   buttonRow2,
@@ -8,7 +6,7 @@ import {
   buttonRow5,
 } from "./module-buttons";
 
-import fetchData from "./module-randomAPI";
+import fetchRandomWord from "./module-randomAPI";
 
 import {
   // functions and variables from the memory module (CRUD)
@@ -33,7 +31,7 @@ function getDimensions() {
 }
 // (() => console.log("immediately invoked arrow function"))();  //works
 
-const buildRow = (arrayOfButtons, rowToMake) => {
+function buildRow(arrayOfButtons, rowToMake) {
   // builds a row of buttons
   // create a new row
   const newRow = document.createElement("div"); // Create a div node to hold the new row:
@@ -77,13 +75,7 @@ const buildRow = (arrayOfButtons, rowToMake) => {
     // Append the node to the newRow
     document.querySelector("#" + rowToMake).appendChild(newButton);
   }
-};
-
-buildRow(buttonRow1, "firstRow");
-buildRow(buttonRow2, "secondRow");
-buildRow(buttonRow3, "thirdRow");
-buildRow(buttonRow4, "fourthRow");
-buildRow(buttonRow5, "fifthRow");
+}
 
 export function updateResultWindow() {
   // target the node
@@ -164,7 +156,7 @@ function equalFunction() {
 // let userNumber become a random number or some other random thing
 async function randomFunction() {
   buildingInput = true;
-  userNumber = await fetchData();
+  userNumber = await fetchRandomWord();
   updateResultWindow();
 }
 
@@ -188,8 +180,8 @@ function toggleButton(IDToToggle) {
   //
 }
 
-function clemFunction() {
-  toggleButton("clem");
+export function clemFunction() {
+  // toggleButton("clem");
   userNumber = "Do not clemerforate";
   buildingInput = false;
   updateResultWindow();
@@ -301,3 +293,8 @@ function mergeThese(arg1, arg2, operator) {
 //   console.log(typeof fetchData);
 // console.log(`randomWord is: ${fetchData()}`);
 //
+buildRow(buttonRow1, "firstRow");
+buildRow(buttonRow2, "secondRow");
+buildRow(buttonRow3, "thirdRow");
+buildRow(buttonRow4, "fourthRow");
+buildRow(buttonRow5, "fifthRow");

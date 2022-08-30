@@ -1,3 +1,5 @@
+import { clemFunction, updateResultWindow } from "./main";
+
 export const buttonRow1 = [
   {
     ID: "clem",
@@ -308,3 +310,50 @@ export const buttonRow5 = [
     particularFunction: "equalFunction",
   },
 ];
+
+// console.log("this happened from module-button.js");
+export function buildRow(arrayOfButtons, rowToMake) {
+  // builds a row of buttons
+  // create a new row
+  const newRow = document.createElement("div"); // Create a div node to hold the new row:
+  newRow.id = rowToMake; // give an id to the row we've made
+  document.querySelector("#buttonGrid").appendChild(newRow); // Append the node
+
+  //   now fill this row with buttons
+  for (let i = 0; i < arrayOfButtons.length; i++) {
+    const newButton = document.createElement("div"); // Create a div node:
+    newButton.classList.add("button"); // give it the class "button"
+
+    let buttonText = arrayOfButtons[i].symbol; // pull the symbol out of the array
+    const textnode = document.createTextNode(buttonText); // Create a text node with the buttonText
+    newButton.appendChild(textnode); // Append the text node to the "div" node:
+
+    let buttonColour = arrayOfButtons[i].buttonColour; // pull the colour out of the array
+    newButton.classList.add(buttonColour); // add it to the button,
+
+    let buttonID = arrayOfButtons[i].ID; // pull the button id out of the array
+    newButton.setAttribute("id", buttonID);
+
+    // adds the particular function to the button
+    let buttonFunction = `${arrayOfButtons[i].particularFunction}`;
+    // console.log(`buttonFunction is of type ${typeof buttonFunction}`);
+    // console.log(typeof numberFunction);
+    // console.log(`buttonFunction is: ${buttonFunction}`);
+
+    newButton.addEventListener("click", eval(buttonFunction)); // works but poor practise?
+
+    if (buttonFunction === "numberFunction") {
+      newButton.addEventListener("click", eval(buttonFunction)); // works but poor practise?
+      // add the number as a property (?) of the newButton object
+      //   console.log(`newButton is of type ${typeof newButton}`);
+      newButton.myParam = arrayOfButtons[i].symbol;
+    } else {
+      //   console.log(`buttonFunction is: ${buttonFunction}`);
+      //   console.log(`window[buttonFunction] is: ${window[buttonFunction]}`);
+
+      newButton.addEventListener("click", eval(buttonFunction)); // works but poor practise?
+    }
+    // Append the node to the newRow
+    document.querySelector("#" + rowToMake).appendChild(newButton);
+  }
+}

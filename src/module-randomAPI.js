@@ -14,7 +14,7 @@ function handleData(data) {
   return randomWord;
 }
 
-function fetchData() {
+function fetchRandomWord() {
   const res = fetch(baseURL + parameters)
     .then(convertToJSObject)
     .then(handleData)
@@ -24,4 +24,4 @@ function fetchData() {
   return res;
 }
 
-export default fetchData; // another way of specifying which parts are to be executed
+export default fetchRandomWord; // another way of specifying which parts are to be executed
